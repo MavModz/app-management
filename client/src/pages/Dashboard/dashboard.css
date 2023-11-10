@@ -1,3 +1,14 @@
 .banner-container {
     background: linear-gradient(90deg, rgba(38,132,252,1) 0%, rgba(242,242,242,1) 100%);
 }
+
+.dashboard-conatiner {
+    margin-left: 2rem;
+    margin-right: 2rem  ;
+}
+
+.course-progress, .schedule {
+    background-color: var(--background);
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+}

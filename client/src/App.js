@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import React from 'react';
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import "react-toastify/dist/ReactToastify.css";
 import './App.css';
 
@@ -16,14 +16,15 @@ function App() {
   const authToken = sessionStorage.getItem('auth_token');
   const location = useLocation();
 
-  useEffect(() => {
-    if (!authToken) {
-      if (location.pathname !== '/') {
-        window.location.href = '/';
-      }
-    }
-  }, [authToken, location]);
+  // Redirect to dashboard if authenticated and accessing '/'
+  if (authToken && location.pathname === '/') {
+    return <Navigate to="/dashboard" />;
+  }
 
+  // Redirect to login if not authenticated
+  if (!authToken && location.pathname !== '/') {
+    return <Navigate to="/" />;
+  }
   return (
     <div className="App">
       <Routes>
@@ -32,7 +33,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
         )}
 
-        <Route path='/' element={<Login />} />
+
 
         {/* Protected Routes */}
         {authToken ? (
@@ -44,7 +45,7 @@ function App() {
             <Route path='/courses' element={<Courses />} />
             <Route path='/management' element={<Management />} />
           </>
-        ) : null}
+        ) : <Route path='/' element={<Login />} />}
 
         {/* Fallback Route */}
         <Route path="*" element={<Restricted />} />
