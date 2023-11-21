@@ -1,5 +1,5 @@
 .banner-container {
-    background: linear-gradient(90deg, rgba(38,132,252,1) 0%, rgba(242,242,242,1) 100%);
+    background-color: var(--primary-new);
 }
 
 .dashboard-conatiner {
@@ -7,8 +7,33 @@
     margin-right: 2rem  ;
 }
 
+.top-banner {
+    color: var(--background-white);
+}
+
+.banner-span {
+    color: var(--primary-hover);
+}
+
 .course-progress, .schedule {
-    background-color: var(--background);
+    background-color: var(--secondary-white);
     border-radius: 10px;
     box-shadow: var(--box-shadow);
+    overflow: hidden;
+    height:100%;
+
+}
+
+.course-details {
+    padding: 12px 16px;
+    max-width: 100%;
+    background-color: var(--background-white);
+    border-radius: 15px;
+    box-shadow: var(--box-shadow-variant);
+}
+
+.course-image {
+    width: 200px;
+    height: 110px;
+    border-radius: 10px;
 }
