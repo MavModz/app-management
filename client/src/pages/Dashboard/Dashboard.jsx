@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '../../Components/Header/Header';
 import Study from '../../assets/images/study.png';
 import Thumb from '../../assets/images/user-2.jpg';
+import Graph from '../../Components/Graph/Graph';
 import './dashboard.css';
 
 function Dashboard() {
@@ -44,7 +45,7 @@ function Dashboard() {
                 <h1 className='schedule-heading text-2xl'>schedule data</h1>
               </div>
               <div className="schedule-graph">
-                <p>graph</p>
+                <Graph />
               </div>
             </div>
           </div>
