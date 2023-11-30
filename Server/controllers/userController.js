@@ -1,9 +1,10 @@
+const checkouts = require("../models/checkoutSchema");
 const users = require("../models/userSchema");
 
 exports.userregister = async (req, res) => {
-    const {name, phone, mrn,  health, birth, gender } = req.body;
+    const {name, phone, birth, gender, enrolledCourses } = req.body;
 
-    if (!name || !phone || !mrn || !health || !birth || !gender  ){
+    if (!name || !phone || !email || !password || !birth || !gender ){
       return  res.status(401).json({message:"Fill all fields"})
     }
 
@@ -17,10 +18,11 @@ exports.userregister = async (req, res) => {
         const newuser = new users({
           name,
           phone,
-          mrn,
-          health,
+          email,
+          password,
           birth,
-          gender
+          gender,
+          enrolledCourses,
         });
         const storeData= await newuser.save();
         res.status(200).json(storeData);
@@ -29,5 +31,24 @@ exports.userregister = async (req, res) => {
         res.status(400).json({ error: "Invalid Details", error });
       }
   };
+
+exports.checkout = async(req, res) => {
+  try {
+    console.log("checkout");
+  }
+
+  catch {
+    console.log("checkout catch");
+  }
+}  
   
-  
+exports.enrolledcourses = async(req, res) => {
+  try{
+    console.log("entered try");
+    const inputdata = await checkouts.find();
+    console.log(inputdata);
+  }
+  catch {
+    console.log("catch");
+  }
+}
