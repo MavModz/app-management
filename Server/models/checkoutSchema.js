@@ -17,7 +17,7 @@ const checkoutSchema = new mongoose.Schema({
         required: true,
     },
 
-    date: {
+    Date: {
         type: String,
         default: getCurrentDate(),
     }
