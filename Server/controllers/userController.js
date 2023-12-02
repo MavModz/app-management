@@ -68,8 +68,7 @@ exports.enrolledcourses = async(req, res) => {
   try{
     console.log("entered try");
     const inputdata = await checkouts.find();
-    console.log(inputdata);
-
+    console.log(inputdata, "input");
     const monthAmounts = {
       Jan: 0,
       Feb: 0,
@@ -88,7 +87,6 @@ exports.enrolledcourses = async(req, res) => {
     inputdata.forEach((item)=>{
       const date = new Date(item.Date);
       const month = date.toLocaleString('default', {month:'short'});
-      console.log(month, date);
       monthAmounts[month] += item.amount;
     });
 
@@ -97,7 +95,8 @@ exports.enrolledcourses = async(req, res) => {
       value : monthAmounts[month],
     }));
 
-    res.json(monthData);
+    res.status(200).json(monthData);
+    console.log(monthData)
   }
   catch(error) {
     res.status(500).json({error:"Internal server error", error})

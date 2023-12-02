@@ -18,10 +18,84 @@
     position: relative;
 }
 
-.bar-dotted-line > p {
+.bar-dotted-line>p {
     position: absolute;
     top: -14px;
     right: -45px;
     color: var(--primary-new);
     font-weight: 500;
+}
+
+.bar-chart {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 204px;
+    width: 100%;
+}
+
+.bar {
+    min-width: 20px;
+    max-width: 45px;
+    width: 100%;
+    background-color: var(--primary-new);
+    margin: 0 8px;
+    position: relative;
+    transition: height 0.3s ease-in-out;
+    border-radius: 8px;
+}
+
+
+.bar-label {
+    text-align: center;
+    margin-top: 8px;
+    font-size: 15px;
+    position: absolute;
+    bottom: -25px;
+    font-weight: 500;
+    color: var(--text-dark);
+    display: flex;
+    justify-content: center;
+    max-width: 45px;
+    width: 100%;
+}
+
+.bar-value {
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    display: none;
+}
+
+@media (max-width: 527px) {
+    .bar-charts {
+        max-width: 426px;
+        overflow: auto;
+    }
+}
+
+@media (max-width: 425px) {
+    .bar-charts {
+        max-width: 318px;
+        width: 100%;
+        overflow: auto;
+    }
+}
+
+@media (max-width: 375px) {
+    .bar-charts {
+        max-width: 285px;
+        width: 100%;
+        overflow: auto;
+    }
+}
+
+@media (max-width: 320px) {
+    .bar-charts {
+        max-width: 230px;
+        width: 100%;
+        overflow: auto;
+    }
 }
