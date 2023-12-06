@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { userchartfunction } from '../../Services/api';
+import { adminchartfunction } from '../../Services/api';
 import Stats from '../../assets/images/vector-points.svg';
 import './graph.css';
 
@@ -10,7 +10,7 @@ function Graph() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await userchartfunction();
+        const response = await adminchartfunction();
         console.log(response);
         setData(response);
       }

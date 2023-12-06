@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 const courses = require("./courseSchema");
 
 const userSchema = new mongoose.Schema({
@@ -34,7 +35,26 @@ const userSchema = new mongoose.Schema({
         type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'courses' }],
         default: []
     },
+    role: {
+        type: String,
+        default: 'user',
+    },
 });
+
+userSchema.pre("save", async function (next) {
+    if(!this.isModified("password"))
+    return next();
+
+    try {
+        const salt = await bcrypt.genSalt(12);
+        const hash = await bcrypt.hash(this.password, salt);
+        this.password = hash;
+        next();
+    }
+    catch (error) {
+        next(error);
+    }
+})
 
 const users = new mongoose.model("users",userSchema);
 

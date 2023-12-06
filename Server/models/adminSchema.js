@@ -29,6 +29,10 @@ const adminSchema = new mongoose.Schema({
     gender: {
         type: String,
         required: true,
+    },
+    role: {
+        type: String,
+        default: 'admin',
     }
 
 });

@@ -1,4 +1,5 @@
 const admins = require("../models/adminSchema");
+const users = require("../models/userSchema");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const SECRET_KEY = process.env.key;
@@ -34,31 +35,86 @@ exports.adminregister = async (req, res) => {
 
 exports.adminlogin = async (req, res) => {
     const { email, password } = req.body;
-    const admin = await admins.findOne({ email: email });
+    let user = await admins.findOne({ email: email });
+    let role = 'admin';
+    
+    if(!user) {
+        user = await users.findOne({email: email});
+        role = 'user';
+    }
 
     try {
-        if (admin) {
-            const isPasswordValid = await bcrypt.compare(password, admin.password);
+        if (user) {
+            const isPasswordValid = await bcrypt.compare(password, user.password);
 
             if (!isPasswordValid) {
                 return res.status(401).json({ message: "Incorrect Password" });
             }
-            console.log("Admin Match");
+            console.log("User Match");
 
-            const login_token = jwt.sign(
+            let login_token = jwt.sign(
                 {
-                    email: admin.email,
-                    id: admin._id,
+                    email: user.email,
+                    id: user._id,
                 },
                 SECRET_KEY
             );
-            res.status(200).json({ exists: true, admin: admin, token: login_token });
-        } 
+            if(user?.role === "admin") {
+                login_token += "2";
+            }
+    
+            if(user?.role === "user" ) {
+                login_token += "3";
+            }
+            res.status(200).json({ exists: true, user: user, token: login_token });
+            console.log(user);
+        }
+        
         else {
             return res.status(401).json({ message: "Admin not found" });
         }
-    } catch (error) {
+    } 
+    
+    catch (error) {
         console.error("Error during password comparison:", error);
         res.status(500).json({ message: "Internal server error" });
     }
 };
+
+
+
+exports.totalenrollments = async(req, res) => {
+    try{
+      const inputdata = await checkouts.find();
+      const monthAmounts = {
+        Jan: 0,
+        Feb: 0,
+        Mar: 0,
+        Apr: 0,
+        May: 0,
+        Jun: 0,
+        Jul: 0,
+        Aug: 0,
+        Sep: 0,
+        Oct: 0,
+        Nov: 0,
+        Dec: 0,
+      };
+  
+      inputdata.forEach((item)=>{
+        const date = new Date(item.Date);
+        const month = date.toLocaleString('default', {month:'short'});
+        monthAmounts[month] += item.amount;
+      });
+  
+      const monthData = Object.keys(monthAmounts).map((month) => ({
+        label : month,
+        value : monthAmounts[month],
+      }));
+  
+      res.status(200).json(monthData);
+    }
+    catch(error) {
+      res.status(500).json({error:"Internal server error", error})
+    }
+  }

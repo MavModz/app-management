@@ -1,7 +1,7 @@
 import { commonrequest } from "./apiCalls";
 import { backend_url } from "./helper";
 
-// ADMIN LOGIN
+// ALL USER AND ADMIN LOGIN
 export const loginfunction = async(email, password) => {
     try {
         const response = await commonrequest("POST", `${backend_url}/admin/login`, {email: email, password: password});
@@ -24,9 +24,9 @@ export const registerfunction = async(name, phone, email, password, birth, gende
 }
 
 //USER CHART DATA
-export const userchartfunction = async() => {
+export const adminchartfunction = async() => {
     try{
-        const response = await commonrequest("GET", `${backend_url}/user/total-courses`);
+        const response = await commonrequest("GET", `${backend_url}/admin/total-enrollments`);
         console.log(response);
         return response.data;
     }

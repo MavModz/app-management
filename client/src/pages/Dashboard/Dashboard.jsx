@@ -23,7 +23,7 @@ function Dashboard() {
             </div>
           </div>
           <div className="stats-wrapper flex gap-8 justify-around h-96 mt-5">
-            <div className="course-progress w-5/12 px-8">
+            <div className="course-progress w-4/12 px-8">
               <div className="course-heading my-4">
                 <h1 className='progress-heading text-2xl'>progress data</h1>
               </div>
@@ -40,7 +40,7 @@ function Dashboard() {
                 </div>
               </div>
             </div>
-            <div className="schedule w-5/12 px-8">
+            <div className="schedule w-8/12 px-8">
               <div className="schedule-heading mt-4">
                 <h1 className='schedule-heading text-2xl'>schedule data</h1>
               </div>
