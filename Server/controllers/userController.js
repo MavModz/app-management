@@ -2,66 +2,68 @@ const checkouts = require("../models/checkoutSchema");
 const users = require("../models/userSchema");
 
 exports.userregister = async (req, res) => {
-    const {name, phone, email, password, birth, gender} = req.body;
+  const { name, phone, email, password, birth, gender } = req.body;
 
-    if (!name || !phone || !email || !password || !birth || !gender ){
-      return  res.status(401).json({message:"Fill all fields"})
-    }
-
-    try{
-      const preuser = await users.findOne({phone:phone});
-
-      if (preuser){
-        return  res.status(200).json("User already exist")
-      }
-      else{
-        const newuser = new users({
-          name,
-          phone,
-          email,
-          password,
-          birth,
-          gender
-        });
-        const storeData= await newuser.save();
-        res.status(200).json(storeData);
-      }
-    } catch (error) {
-        res.status(400).json({ error: "Invalid Details", error });
-      }
-  };
-
-exports.checkout = async(req, res) => {
-  const {phone, amount} = req.body;
-
-  if (!phone || !amount) {
-    return res.status(401).json({message:"Fill all fields"})
+  if (!name || !phone || !email || !password || !birth || !gender) {
+    return res.status(401).json({ message: "Fill all fields" })
   }
 
-  const preuser = await users.findOne({phone: phone});
-  try { 
-    if(preuser) {
+  try {
+    const preuser = await users.findOne({ phone: phone });
+
+    if (preuser) {
+      return res.status(200).json("User already exist")
+    }
+    else {
+      const newuser = new users({
+        name,
+        phone,
+        email,
+        password,
+        birth,
+        gender
+      });
+      const storeData = await newuser.save();
+      res.status(200).json(storeData);
+    }
+  } catch (error) {
+    res.status(400).json({ error: "Invalid Details", error });
+  }
+};
+
+exports.checkout = async (req, res) => {
+  const { phone, amount } = req.body;
+  const userId = req.userId
+
+  if (!phone || !amount) {
+    return res.status(401).json({ message: "Fill all fields" })
+  }
+
+  const preuser = await users.findOne({ phone: phone });
+  try {
+    if (preuser) {
       const userName = preuser.name;
 
-      const CheckOut =  new checkouts({
-        name : userName,
-        phone : phone,
-        amount : amount,
+      const CheckOut = new checkouts({
+        name: userName,
+        phone: phone,
+        amount: amount,
+        userId: userId
       });
 
       const storeData = await CheckOut.save();
       res.status(200).json(storeData);
     }
     else {
-      res.status(403).json({message:"user not found"});
+      res.status(403).json({ message: "user not found" });
     }
   }
 
-  catch(error){
-      res.status(400).json({error: "Internal Server Error", error})
+  catch (error) {
+    res.status(400).json({ error: "Internal Server Error", error })
   }
-}  
-  
+}
+
 // exports.enrolledcourses = async(req, res) => {
 //   try{
 //     const inputdata = await checkouts.find();

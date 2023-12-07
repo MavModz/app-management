@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const userId = require('../models/userSchema');
 
 const checkoutSchema = new mongoose.Schema({
     name: {
@@ -20,7 +21,13 @@ const checkoutSchema = new mongoose.Schema({
     Date: {
         type: String,
         default: getCurrentDate(),
-    }
+    },
+
+    // userId: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'userId',
+    //     required: true,
+    // }
 })
 
 const checkouts = new mongoose.model("Checkouts", checkoutSchema);
