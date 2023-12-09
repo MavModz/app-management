@@ -32,7 +32,7 @@ const userSchema = new mongoose.Schema({
         required: true,
     },
     enrolledCourses: {
-        type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'courses' }],
+        type: [{ type: mongoose.Schema.Types.ObjectId,ref: 'courses' }],
         default: []
     },
     role: {

@@ -5,6 +5,7 @@ const cors = require("cors");
 require("./db/connection");
 const router = require("./routes/router");
 const PORT = process.env.instance_Port;
+const SECRET_KEY = process.env.key;
 
 
 //MIDDLEWARE

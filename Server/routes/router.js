@@ -13,4 +13,5 @@ router.post("/admin/add-course", adminAuth, adminControllers.addCourse);
 
 router.post("/user/register", usercontrollers.userregister);
 router.post("/user/checkout", userAuth, usercontrollers.checkout);
+router.post("/user/enroll", userAuth, usercontrollers.enrollCourse);
 module.exports = router;

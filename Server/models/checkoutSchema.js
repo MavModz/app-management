@@ -23,11 +23,11 @@ const checkoutSchema = new mongoose.Schema({
         default: getCurrentDate(),
     },
 
-    // userId: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'userId',
-    //     required: true,
-    // }
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'userId',
+        required: true,
+    }
 })
 
 const checkouts = new mongoose.model("Checkouts", checkoutSchema);

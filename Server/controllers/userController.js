@@ -1,5 +1,6 @@
 const checkouts = require("../models/checkoutSchema");
 const users = require("../models/userSchema");
+const Course = require('../models/courseSchema');
 
 exports.userregister = async (req, res) => {
   const { name, phone, email, password, birth, gender } = req.body;
@@ -61,6 +62,36 @@ exports.checkout = async (req, res) => {
 
   catch (error) {
     res.status(400).json({ error: "Internal Server Error", error })
+  }
+}
+
+exports.enrollCourse = async(req, res) => {
+  try {
+    const userId = req.body.userId;
+    const {courseCode} = req.body;
+
+    const user = await users.findById(userId);
+    if(!user){
+      return res.status(404).json({message: 'user not found'});
+    }
+
+    const course = await Course.findOne({courseCode: courseCode})
+    if(!course){
+      return res.status(404).json({message: 'course not found'});
+    }
+
+    if(user.enrollCourse.includes(course)) {
+      return res.status(400).json({message: 'User already enrolled in the course'})
+    }
+
+    user.enrollCourse.push(courseCode);
+    const storeData = await user.save();
+    console.log(storeData);
+    return res.status(200).json({message: 'Enrolled Successfull'})
+  }
+
+  catch(error){
+    res.status(500).json({error: 'Internal Server Error', error})
   }
 }
 

@@ -69,7 +69,7 @@ exports.adminlogin = async (req, res) => {
                 login_token += "3";
             }
             res.status(200).json({ exists: true, user: user, token: login_token });
-            console.log(user);
+            console.log(login_token);
         }
 
         else {
