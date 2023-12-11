@@ -23,7 +23,7 @@ export const registerfunction = async(name, phone, email, password, birth, gende
     }
 }
 
-//USER CHART DATA
+//ADMIN CHART DATA
 export const adminchartfunction = async() => {
     try{
         const response = await commonrequest("GET", `${backend_url}/admin/total-enrollments`);
@@ -32,7 +32,19 @@ export const adminchartfunction = async() => {
     }
 
     catch(error) {
-        console.log(error);
+        throw error;
+    }
+}
+
+//USER COURSE ENROLLMENT CHART DATA
+export const userchartfunction = async() => {
+    try {
+        const response = await commonrequest("GET", `${backend_url}/user/total-courses`);
+        console.log(response);
+        return response.data;
+    }
+
+    catch(error) {
         throw error;
     }
 }

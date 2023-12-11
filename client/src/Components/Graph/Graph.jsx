@@ -1,26 +1,36 @@
 import React, { useEffect, useState } from 'react';
-import { adminchartfunction } from '../../Services/api';
+import { adminchartfunction, userchartfunction } from '../../Services/api';
 import Stats from '../../assets/images/vector-points.svg';
 import './graph.css';
 
-function Graph() {
+function Graph(role) {
 
   const [data, setData] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await adminchartfunction();
+        let response;
+        if(role==="admin") {
+          response = await adminchartfunction();
+        }
+        else if(role==="user") {
+          response = await userchartfunction();
+        }
         console.log(response);
-        setData(response);
+        setData(response || []);
       }
       catch (error) {
-        console.log(error)
+        console.log(error);
+        setData([]);
       }
     }
-    fetchData();
+    if(role) {
+      fetchData();
+    }
 
-  }, []);
+  }, [role]);
+  
   const maxValue = Math.max(...data.map(item => item.value));
   console.log(maxValue);
 

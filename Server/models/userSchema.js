@@ -24,7 +24,6 @@ const userSchema = new mongoose.Schema({
     },
     birth: {
         type: String,
-        unique: true,
         required: true,
     },
     gender: {
@@ -32,7 +31,7 @@ const userSchema = new mongoose.Schema({
         required: true,
     },
     enrolledCourses: {
-        type: [{ type: mongoose.Schema.Types.ObjectId,ref: 'courses' }],
+        type: [{ type: String, ref: 'courses' }],
         default: []
     },
     role: {

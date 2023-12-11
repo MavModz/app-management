@@ -45,7 +45,7 @@ function Dashboard() {
                 <h1 className='schedule-heading text-2xl'>schedule data</h1>
               </div>
               <div className="schedule-graph">
-                <Graph />
+                <Graph/>
               </div>
             </div>
           </div>
