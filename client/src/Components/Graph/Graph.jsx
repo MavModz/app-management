@@ -3,34 +3,43 @@ import { adminchartfunction, userchartfunction } from '../../Services/api';
 import Stats from '../../assets/images/vector-points.svg';
 import './graph.css';
 
-function Graph(role) {
+function Graph() {
 
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        let response;
-        if(role==="admin") {
-          response = await adminchartfunction();
-        }
-        else if(role==="user") {
-          response = await userchartfunction();
-        }
-        console.log(response);
-        setData(response || []);
-      }
-      catch (error) {
-        console.log(error);
-        setData([]);
-      }
-    }
-    if(role) {
-      fetchData();
-    }
-
-  }, [role]);
+    fetchdata();
+  }, []);
   
+  const fetchdata = async () => {
+    try {
+      const authtoken = sessionStorage.getItem('auth_token');
+      const role = authtoken.slice(-1);
+      
+      if(!role){
+        console.log("Auth token not found")
+        return;
+      }
+
+      let response;
+      if(role==='2') {
+        response = await adminchartfunction();
+        console.log(response);
+        setData(response);
+      }
+
+      else if(role==='3') {
+        response = await userchartfunction();
+        console.log(response);
+        setData(response);
+      }
+
+    }
+    catch(error) {
+      console.log(error);
+    }
+  } 
+
   const maxValue = Math.max(...data.map(item => item.value));
   console.log(maxValue);
 
