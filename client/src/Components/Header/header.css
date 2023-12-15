@@ -1,3 +1,7 @@
+.header-container {
+    box-shadow: var(--box-shadow);
+}
+
 .header-wrapper {
     display: flex;
     justify-content: space-around;

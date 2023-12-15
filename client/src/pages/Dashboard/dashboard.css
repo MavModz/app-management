@@ -4,7 +4,9 @@
 
 .dashboard-conatiner {
     margin-left: 2rem;
-    margin-right: 2rem  ;
+    margin-right: 2rem;
+    margin-top: 0.5rem;
+    background-color: var(--background);
 }
 
 .top-banner {
@@ -16,8 +18,8 @@
 }
 
 .course-progress, .schedule {
-    background-color: var(--secondary-white);
-    border-radius: 10px;
+    background-color: var(--background-white);
+    border-radius: 16px;
     box-shadow: var(--box-shadow);
     overflow: hidden;
     height:420px;

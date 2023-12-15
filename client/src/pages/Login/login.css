@@ -39,6 +39,13 @@
     background-color: transparent;
 }
 
+.login-welcome-row > h1 {
+    color: var(--text-dark);
+    font-size: 20px;
+    font-weight: 600;
+
+}
+
 .my-form__button {
     background-color: var(--primary-new);
     color: var(--background);

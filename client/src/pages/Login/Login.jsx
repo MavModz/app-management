@@ -29,6 +29,7 @@ const Login = () => {
         }, 1000);
       } else {
         console.log("Fetching error");
+        toast.error("Login Failed")
         navigate('/');
       }
     } catch (error) {
