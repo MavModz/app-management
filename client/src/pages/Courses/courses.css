@@ -31,20 +31,3 @@
     align-items: center;
     width: 100%;
 }
-
-/* .course-fields input{
-    color: var(--secondary-text);
-    font-size: 17px;
-    font-weight: 500;
-    max-width: 100%;
-    width: 100%;
-    border: 1px solid var(--secondary-text);
-    height: 50px;
-    letter-spacing: .03rem;
-    background-color: transparent;
-    outline: none;
-    transition: .25s;
-    border-radius: 8px;
-    text-indent: 20px;
-    margin-top: 8px;
-} */

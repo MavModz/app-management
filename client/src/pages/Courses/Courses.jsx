@@ -1,9 +1,15 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './courses.css';
 import Header from '../../Components/Header/Header';
 
 function Courses() {
   const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+  }
+
   return (
     <div className='bg-[#f4f7fe]'>
       <Header />
@@ -13,17 +19,35 @@ function Courses() {
             <span className='top-heading-row'>
               <h1>Add New Course</h1>
             </span>
-            <div className="text-field">
-              <label htmlFor="course name">Enter Course Name</label>
-              <input type="text" name="course name" />
+            <div className="course-form-wrapper flex gap-4">
+              <div className="form-left w-full">
+                <div className="text-field">
+                  <label htmlFor="course name">Enter Course Name</label>
+                  <input type="text" name="course name" placeholder='Course Name' />
+                </div>
+                <div className="text-field">
+                  <label htmlFor="teacher name">Enter Teacher Name</label>
+                  <input type="text" name="teacher name" placeholder='Teacher Name' />
+                </div>
+              </div>
+              <div className="form-right w-full">
+                <div className="text-field">
+                  <label htmlFor="course name">Enter Course Name</label>
+                  <input type="text" name="course name" placeholder='Course Name' />
+                </div>
+                <div className="text-field">
+                  <label htmlFor="course price">Enter Course price</label>
+                  <input type="text" name="course price" placeholder='Course Price' />
+                </div>
+              </div>
             </div>
-            <div className="text-field">
-              <label htmlFor="course code">Enter Course Code</label>
-              <input type="text" name="course code" />
-            </div>
+
             <div className="submit-course">
-              <button className='my-form__button'>
-              {isLoading ? 'Loading...' : 'Submit Course'}
+              <button
+                className='my-form__button'
+                onClick={handleSubmit}
+              >
+                {isLoading ? 'Loading...' : 'Submit Course'}
               </button>
             </div>
           </form>

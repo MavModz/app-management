@@ -13,8 +13,17 @@ const courseSchema = new mongoose.Schema({
     adminId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'adminId',
-        required: true
+        required: true,
+    },
+    teacherName: {
+        type: String,
+        required: true,
+    },
+    coursePrice: {
+        type: String,
+        required: true,
     }
+    
 });
 
 const courses = new mongoose.model("courses", courseSchema);
