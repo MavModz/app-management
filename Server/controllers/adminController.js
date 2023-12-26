@@ -84,13 +84,15 @@ exports.adminlogin = async (req, res) => {
 };
 
 exports.addCourse = async (req, res) => {
-    const { courseName, courseCode } = req.body;
+    const { courseName, courseCode, teacherName, coursePrice } = req.body;
     const adminId = req.adminId;
 
     try {
         const newCourse = new courses({
             courseName,
             courseCode,
+            teacherName,
+            coursePrice,
             adminId,
         });
 

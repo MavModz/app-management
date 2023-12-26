@@ -48,3 +48,15 @@ export const userchartfunction = async() => {
         throw error;
     }
 }
+
+// ADD NEW COURSE
+export const addcoursefunction = async(courseName, courseCode, coursePrice, teacherName) => {
+    try {
+        const response = await commonrequest("POST", `${backend_url}/admin/add-course`, {courseName: courseName, courseCode: courseCode, coursePrice: coursePrice, teacherName: teacherName});
+        console.log(response);
+        return response.data;
+    }
+    catch(error) {
+        throw error;
+    }
+}

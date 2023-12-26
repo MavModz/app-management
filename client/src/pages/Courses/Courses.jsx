@@ -1,13 +1,30 @@
 import React, { useState } from 'react';
-import './courses.css';
 import Header from '../../Components/Header/Header';
+import { addcoursefunction } from '../../Services/api';
+import './courses.css';
 
 function Courses() {
+  const [courseName, setcourseName] = useState('');
+  const [courseCode, setcourseCode] = useState('');
+  const [teacherName, setteacherName] = useState('');
+  const [coursePrice, setcoursePrice] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
+
+    try {
+      const response = await addcoursefunction(courseName, courseCode, coursePrice, teacherName)
+      console.log(response);
+    }
+
+    catch (error) {
+      console.log(error);
+    }
+    finally {
+      setIsLoading(false);
+    }
   }
 
   return (
@@ -23,21 +40,53 @@ function Courses() {
               <div className="form-left w-full">
                 <div className="text-field">
                   <label htmlFor="course name">Enter Course Name</label>
-                  <input type="text" name="course name" placeholder='Course Name' />
+                  <input type="text"
+                    name="courseName"
+                    id='courseName'
+                    value={courseName}
+                    onChange={(e) => setcourseName(e.target.value)}
+                    placeholder='Course Name'
+                    autoComplete="off"
+                    required
+                  />
                 </div>
                 <div className="text-field">
                   <label htmlFor="teacher name">Enter Teacher Name</label>
-                  <input type="text" name="teacher name" placeholder='Teacher Name' />
+                  <input type="text"
+                    name="teacherName"
+                    id='teacherName'
+                    value={teacherName}
+                    onChange={(e) => setteacherName(e.target.value)}
+                    placeholder='Teacher Name'
+                    autoComplete="off"
+                    required
+                  />
                 </div>
               </div>
               <div className="form-right w-full">
                 <div className="text-field">
-                  <label htmlFor="course name">Enter Course Name</label>
-                  <input type="text" name="course name" placeholder='Course Name' />
+                  <label htmlFor="course name">Enter Course Code</label>
+                  <input type="text"
+                    name="courseCode"
+                    id='courseCode'
+                    value={courseCode}
+                    onChange={(e) => setcourseCode(e.target.value)}
+                    placeholder='Course Code'
+                    autoComplete="off"
+                    required
+                  />
                 </div>
                 <div className="text-field">
                   <label htmlFor="course price">Enter Course price</label>
-                  <input type="text" name="course price" placeholder='Course Price' />
+                  <input type="text"
+                    name="coursePrice"
+                    id='coursePrice'
+                    value={coursePrice}
+                    onChange={(e) => setcoursePrice(e.target.value)}
+                    placeholder='Course Price'
+                    autoComplete="off"
+                    required
+                  />
                 </div>
               </div>
             </div>
@@ -46,6 +95,7 @@ function Courses() {
               <button
                 className='my-form__button'
                 onClick={handleSubmit}
+                disabled={isLoading}
               >
                 {isLoading ? 'Loading...' : 'Submit Course'}
               </button>
