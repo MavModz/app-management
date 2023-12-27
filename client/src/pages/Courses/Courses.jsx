@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Header from '../../Components/Header/Header';
 import { addcoursefunction } from '../../Services/api';
+import Success from '../../Components/Modals/Success/Success';
 import './courses.css';
 
 function Courses() {
@@ -9,6 +10,7 @@ function Courses() {
   const [teacherName, setteacherName] = useState('');
   const [coursePrice, setcoursePrice] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,6 +19,7 @@ function Courses() {
     try {
       const response = await addcoursefunction(courseName, courseCode, coursePrice, teacherName)
       console.log(response);
+      setShowSuccessModal(true);
     }
 
     catch (error) {
@@ -101,6 +104,10 @@ function Courses() {
               </button>
             </div>
           </form>
+          <Success
+            show={showSuccessModal}
+            onClose={() => setShowSuccessModal(false)}
+          />
         </span>
       </div>
     </div>
