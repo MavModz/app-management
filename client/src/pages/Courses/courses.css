@@ -14,7 +14,7 @@
 .add-courses-form {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 40px;
     background-color: var(--background-white);
     border: 1px solid var(--primary-new);
     border-radius: 16px;
@@ -30,4 +30,49 @@
     justify-content: center;
     align-items: center;
     width: 100%;
+}
+
+.top-heading-row > h1 {
+    color: var(--text-dark);
+    font-weight: 700;
+    font-size: 24px;
+}
+
+.upload-thumbnail {
+    position: relative;
+    height: 150px;
+    width: 100%;
+    border: 2px dashed var(--primary-new);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.upload-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.upload-text {
+    color: var(--secondary-text);
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.upload-thumbnail svg {
+    width: 100px;
+    height: 60px;
+    background: transparent;
+}
+
+.course-thumbnail {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
 }

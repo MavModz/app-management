@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Header from '../../Components/Header/Header';
 import { addcoursefunction } from '../../Services/api';
 import Success from '../../Components/Modals/Success/Success';
+import { UploadCloud } from 'lucide-react';
 import './courses.css';
 
 function Courses() {
@@ -9,8 +10,18 @@ function Courses() {
   const [courseCode, setcourseCode] = useState('');
   const [teacherName, setteacherName] = useState('');
   const [coursePrice, setcoursePrice] = useState('');
+  const [fileName, setFileName] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+
+  const handleFileChange = async (e) => {
+    const uploadedFile = e.target.files[0];
+    if (uploadedFile) {
+      setFileName(uploadedFile.name);
+    } else {
+      setFileName('');
+    }
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,10 +48,21 @@ function Courses() {
         <span className="course-row">
           <form className='add-courses-form'>
             <span className='top-heading-row'>
-              <h1>Add New Course</h1>
+              <h1>Add a <span style={{color: `var(--primary-new)`}}>New Course</span></h1>
             </span>
+            <div className="upload-thumbnail">
+              <label for="fileInput" class="upload-label">
+                <input type="file"
+                  id="courseThumbnail"
+                  class="course-thumbnail"
+                  onChange={handleFileChange}
+                />
+                <UploadCloud color="#3574F2" />
+                <span className="upload-text">{fileName ? `${fileName}` : 'Upload thumbnail here'}</span>
+              </label>
+            </div>
             <div className="course-form-wrapper flex gap-4">
-              <div className="form-left w-full">
+              <div className="form-left w-full flex flex-col gap-7">
                 <div className="text-field">
                   <label htmlFor="course name">Enter Course Name</label>
                   <input type="text"
@@ -66,7 +88,7 @@ function Courses() {
                   />
                 </div>
               </div>
-              <div className="form-right w-full">
+              <div className="form-right w-full flex flex-col gap-7 ">
                 <div className="text-field">
                   <label htmlFor="course name">Enter Course Code</label>
                   <input type="text"

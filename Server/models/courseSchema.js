@@ -22,7 +22,9 @@ const courseSchema = new mongoose.Schema({
     coursePrice: {
         type: String,
         required: true,
-    }
+    },
+    curseThumbnail: Object,
+    required: true,
     
 });
 
