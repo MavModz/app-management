@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Image from "../../assets/images/astronaut.jpg";
-import { LayoutDashboard, FileText, CalendarDays, MessageCircle, ClipboardCheck, BellDot, User} from 'lucide-react';
+import { FileText, MessageCircle, ClipboardCheck, BellDot, User} from 'lucide-react';
+import LayoutDashboard from '../../assets/images/Dashboard.svg'
+import CalendarDays from '../../assets/images/Calendar.svg' 
 import './header.css';
 
 const navItems = [
-  { text: 'Dashboard', icon: <LayoutDashboard strokeWidth={1.5} />, path: '/dashboard' },
+  { text: 'Dashboard', icon: <img src={LayoutDashboard} alt="Dashboard svg icon" className='image-state'/>, path: '/dashboard' },
   { text: 'Billing', icon: <FileText strokeWidth={1.5} />, path: '/billing' },
-  { text: 'Courses', icon: <CalendarDays strokeWidth={1.5} />, path: '/courses' },
+  { text: 'Courses', icon: <img src={CalendarDays} alt="Calendar svg icon" className='image-state' />, path: '/courses' },
   { text: 'Management', icon: <MessageCircle strokeWidth={1.5} />, path: '/management' },
   { text: 'Profile', icon: <User strokeWidth={1.5} />, path: '/profile' }
 ];

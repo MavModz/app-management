@@ -7,7 +7,7 @@
     justify-content: space-around;
     align-items: center;
     height: 5rem;
-    width: 100vw;
+    width: 100%;
     background-color: var(--background-white);
 }
 
@@ -54,7 +54,16 @@ p {
     background-color: var(--background-white);
 }
 
+.nav-menu-items .image-state {
+    width: 20px;
+    height: 20px;
+    filter: grayscale(100%);
+    transition: filter 0.2s ease; 
+  }
   
+  .nav-menu-items.active .image-state {
+    filter: none;
+  }
 
 .nav-item-content {
     display: flex;

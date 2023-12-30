@@ -23,9 +23,10 @@ const courseSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    curseThumbnail: Object,
-    required: true,
-    
+    courseThumbnail: {
+        type: Object,
+        // required: true
+    }
 });
 
 const courses = new mongoose.model("courses", courseSchema);

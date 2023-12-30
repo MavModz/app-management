@@ -1,16 +1,31 @@
 import React from 'react'
+import successPopup from '../../../assets/images/success.gif'
 import './sucess.css';
 
-function Success({ show, onClose }) {
+function Success({ show, onClose, message }) {
     if (!show) {
         return null;
     }
+
+    let defaultMessage = 'Your action was successful.';
+    if (message === 'addCourse') {
+        defaultMessage = 'Course added successfully.';
+    } else if (message === 'deleteCourse') {
+        defaultMessage = 'Course deleted successfully.';
+    }
+    
+
     return (
         <div className="modal">
             <div className="modal-content">
-                <h2>Success!</h2>
-                <p>Your form was submitted successfully.</p>
-                <button onClick={onClose}>Close</button>
+                <img src={successPopup} alt="success popup" className='popup-img' />
+                <h2 className='popup-title-success'>Success!</h2>
+                <p className='popup-message'>{defaultMessage}</p>
+                <button
+                    onClick={onClose}
+                    className="popup__button">
+                    OK
+                </button>
             </div>
         </div>
     )

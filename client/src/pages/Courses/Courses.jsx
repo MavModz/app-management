@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Header from '../../Components/Header/Header';
 import { addcoursefunction } from '../../Services/api';
 import Success from '../../Components/Modals/Success/Success';
+import Error from '../../Components/Modals/Error/Error';
 import { UploadCloud } from 'lucide-react';
 import './courses.css';
 
@@ -13,6 +14,7 @@ function Courses() {
   const [fileName, setFileName] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [showErrorModal, setShowErrorModal] = useState(false);
 
   const handleFileChange = async (e) => {
     const uploadedFile = e.target.files[0];
@@ -30,11 +32,17 @@ function Courses() {
     try {
       const response = await addcoursefunction(courseName, courseCode, coursePrice, teacherName)
       console.log(response);
-      setShowSuccessModal(true);
+      if(response && response.courseName && response._id) {
+        setShowSuccessModal(true);
+      }
+      else {
+        setShowErrorModal(true)
+      }
     }
 
     catch (error) {
       console.log(error);
+      setShowErrorModal(true)
     }
     finally {
       setIsLoading(false);
@@ -48,13 +56,13 @@ function Courses() {
         <span className="course-row">
           <form className='add-courses-form'>
             <span className='top-heading-row'>
-              <h1>Add a <span style={{color: `var(--primary-new)`}}>New Course</span></h1>
+              <h1>Add a <span style={{ color: `var(--primary-new)` }}>New Course</span></h1>
             </span>
             <div className="upload-thumbnail">
-              <label for="fileInput" class="upload-label">
+              <label htmlFor="fileInput" className="upload-label">
                 <input type="file"
                   id="courseThumbnail"
-                  class="course-thumbnail"
+                  className="course-thumbnail"
                   onChange={handleFileChange}
                 />
                 <UploadCloud color="#3574F2" />
@@ -129,6 +137,12 @@ function Courses() {
           <Success
             show={showSuccessModal}
             onClose={() => setShowSuccessModal(false)}
+            message="addCourse"
+          />
+          <Error
+            show={showErrorModal}
+            onClose={() => setShowErrorModal(false)}
+            message="addCourseError"
           />
         </span>
       </div>

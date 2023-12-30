@@ -29,7 +29,7 @@ function Dashboard() {
               </div>
               <div className="course-details">
                 <div className='course-info flex gap-4'>
-                  <div className="course-thumbnail flex items-center">
+                  <div className="course-image flex items-center">
                     <img src= {Thumb} alt="course thumbnail" className='course-image' />
                   </div>
                   <div className="course-data">
