@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Image from "../../assets/images/astronaut.jpg";
-import { FileText, MessageCircle, ClipboardCheck, BellDot, User} from 'lucide-react';
-import LayoutDashboard from '../../assets/images/Dashboard.svg'
-import CalendarDays from '../../assets/images/Calendar.svg' 
+import { ClipboardCheck, BellDot, User} from 'lucide-react';
+import LayoutDashboard from '../../assets/images/Dashboard.svg';
+import CalendarDays from '../../assets/images/Calendar.svg';
+import UserProfile from  '../../assets/images/Profile.svg';
+import FileText from '../../assets/images/Billing.svg';
+import MessageCircle from '../../assets/images/Message.svg';
 import './header.css';
 
 const navItems = [
   { text: 'Dashboard', icon: <img src={LayoutDashboard} alt="Dashboard svg icon" className='image-state'/>, path: '/dashboard' },
-  { text: 'Billing', icon: <FileText strokeWidth={1.5} />, path: '/billing' },
+  { text: 'Billing', icon: <img src={FileText} alt="Billing svg icon" className='image-state' />, path: '/billing' },
   { text: 'Courses', icon: <img src={CalendarDays} alt="Calendar svg icon" className='image-state' />, path: '/courses' },
-  { text: 'Management', icon: <MessageCircle strokeWidth={1.5} />, path: '/management' },
-  { text: 'Profile', icon: <User strokeWidth={1.5} />, path: '/profile' }
+  { text: 'Management', icon: <img src={MessageCircle} alt="Calendar svg icon" className='image-state' />, path: '/management' },
+  { text: 'Profile', icon: <img src={UserProfile} alt="Calendar svg icon" className='image-state' />, path: '/profile' }
 ];
 
 function Header() {
