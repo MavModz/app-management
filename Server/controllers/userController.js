@@ -65,39 +65,39 @@ exports.checkout = async (req, res) => {
   }
 }
 
-exports.enrollCourse = async(req, res) => {
+exports.enrollCourse = async (req, res) => {
   try {
     const userId = req.userId;
-    const {courseCode} = req.body;
+    const { courseCode } = req.body;
 
-    const course = await Course.findOne({courseCode: courseCode})
-    if(!course){
-      return res.status(404).json({message: 'course not found'});
+    const course = await Course.findOne({ courseCode: courseCode })
+    if (!course) {
+      return res.status(404).json({ message: 'course not found' });
     }
 
     const user = await users.findById(userId);
 
-    if(!user) {
-      return res.status(404).json({message:'user not found'});
+    if (!user) {
+      return res.status(404).json({ message: 'user not found' });
     }
-    if(user.enrolledCourses.includes(courseCode)) {
-      return res.status(400).json({message:'user already enrolled'});
+    if (user.enrolledCourses.includes(courseCode)) {
+      return res.status(400).json({ message: 'user already enrolled' });
     }
 
     user.enrolledCourses.push(courseCode);
     const storeData = await user.save();
-    return res.status(200).json({message:' Course Enrollment successful', user:user});
+    return res.status(200).json({ message: ' Course Enrollment successful', user: user });
   }
 
-  catch(error){
-    res.status(500).json({error: 'Internal Server Error', error})
+  catch (error) {
+    res.status(500).json({ error: 'Internal Server Error', error })
   }
 }
 
-exports.totalenrolledcourses = async(req, res) => {
-  try{
+exports.totalenrolledcourses = async (req, res) => {
+  try {
     const userId = req.userId;
-    const inputdata = await checkouts.find({userId: userId});
+    const inputdata = await checkouts.find({ userId: userId });
     const monthAmounts = {
       Jan: 0,
       Feb: 0,
@@ -113,20 +113,31 @@ exports.totalenrolledcourses = async(req, res) => {
       Dec: 0,
     };
 
-    inputdata.forEach((item)=>{
+    inputdata.forEach((item) => {
       const date = new Date(item.Date);
-      const month = date.toLocaleString('default', {month:'short'});
+      const month = date.toLocaleString('default', { month: 'short' });
       monthAmounts[month] += 1;
     });
 
     const monthData = Object.keys(monthAmounts).map((month) => ({
-      label : month,
-      value : monthAmounts[month],
+      label: month,
+      value: monthAmounts[month],
     }));
 
     res.status(200).json(monthData);
   }
-  catch(error) {
-    res.status(500).json({error:"Internal server error", error})
+  catch (error) {
+    res.status(500).json({ error: "Internal server error", error })
+  }
+}
+
+exports.allcourses = async (req, res) => {
+  try {
+    const allcourses = await Course.find({});
+    res.status(200).json(allcourses);
+  }
+
+  catch {
+    res.status(500).json({ error: "Internal server error", error })
   }
 }

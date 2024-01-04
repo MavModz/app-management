@@ -15,4 +15,5 @@ router.post("/user/register", usercontrollers.userregister);
 router.post("/user/checkout", userAuth, usercontrollers.checkout);
 router.post("/user/enroll", userAuth, usercontrollers.enrollCourse);
 router.get("/user/total-courses", userAuth, usercontrollers.totalenrolledcourses);
+router.get("/user/all-courses", usercontrollers.allcourses);
 module.exports = router;

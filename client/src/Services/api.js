@@ -60,3 +60,15 @@ export const addcoursefunction = async(courseName, courseCode, coursePrice, teac
         throw error;
     }
 }
+
+// LISTING OF ALL COURSES
+export const allcoursesfunction = async() => {
+    try {
+        const response = await commonrequest("GET", `${backend_url}/user/all-courses`)
+        console.log(response.data);
+        return response.data;
+    }
+    catch(error) {
+        throw error;
+    }
+}
