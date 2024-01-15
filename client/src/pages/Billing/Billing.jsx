@@ -20,19 +20,20 @@ function Billing() {
   };
 
   return (
-    <div>
+    <div className='bg-[#f4f7fe]'>
       <Header />
-      Billing Page
-      <div className="course-list-cards">
-        {courses.map(course => (
-          <Card
-            key={course._id}
-            courseName={course.courseName}
-            courseCode={course.courseCode}
-            teacherName={course.teacherName}
-            coursePrice={course.coursePrice}
-          />
-        ))}
+      <div className="course-list-card-wrapper">
+        <div className="course-list-cards">
+          {courses.map(course => (
+            <Card
+              key={course._id}
+              courseName={course.courseName}
+              courseCode={course.courseCode}
+              teacherName={course.teacherName}
+              coursePrice={course.coursePrice}
+            />
+          ))}
+        </div>
       </div>
     </div>
   )

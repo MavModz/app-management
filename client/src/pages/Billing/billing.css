@@ -1,4 +1,15 @@
+.course-list-card-wrapper {
+    margin: 0.5rem 2rem 0 2rem;
+    min-height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
 .course-list-cards {
     display: flex;
+    justify-content: space-between;
     gap: 24px;
 }
