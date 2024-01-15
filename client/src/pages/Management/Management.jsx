@@ -1,5 +1,4 @@
 import React from 'react';
-import User from '../../assets/images/user-2.jpg';
 import Header from '../../Components/Header/Header';
 import './management.css';
 
