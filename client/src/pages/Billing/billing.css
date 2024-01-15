@@ -1,6 +1,6 @@
 .course-card-container {
-    margin: 0 10rem;
-    /* box-sizing: border-box; */
+    margin: 0 2rem;
+    padding: 0.5rem 1rem;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -8,7 +8,7 @@
 }
 
 .course-card-container > h4 {
-    margin-top: 40px;
+    margin-top: 2rem;
     padding: 24px 0;
     font-size: 20px;
     font-weight: 600;
@@ -23,8 +23,7 @@
 }
 
 .course-list-cards {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     gap: 24px;
 }

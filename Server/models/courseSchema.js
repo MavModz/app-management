@@ -26,6 +26,11 @@ const courseSchema = new mongoose.Schema({
     courseThumbnail: {
         type: Object,
         // required: true
+    },
+    rating: {
+        type: Number,
+        min: 1,
+        max: 5,
     }
 });
 

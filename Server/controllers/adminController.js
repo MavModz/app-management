@@ -84,7 +84,7 @@ exports.adminlogin = async (req, res) => {
 };
 
 exports.addCourse = async (req, res) => {
-    const { courseName, courseCode, teacherName, coursePrice } = req.body;
+    const { courseName, courseCode, teacherName, coursePrice, rating } = req.body;
     const adminId = req.adminId;
 
     try {
@@ -94,6 +94,7 @@ exports.addCourse = async (req, res) => {
             teacherName,
             coursePrice,
             adminId,
+            rating,
         });
 
         const storeData = await newCourse.save();

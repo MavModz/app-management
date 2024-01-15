@@ -60,3 +60,18 @@
     line-height: 24px;
     color: var(--primary-new);
 }
+
+.course-card-info {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.course-card-info > span {
+font-family: 'Inter';
+font-size: 14px;
+font-weight: 500;
+line-height: 20px;
+letter-spacing: -0.14px;
+color: var(--secondary-text);
+}

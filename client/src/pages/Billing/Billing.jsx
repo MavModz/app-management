@@ -33,6 +33,7 @@ function Billing() {
                 courseCode={course.courseCode}
                 teacherName={course.teacherName}
                 coursePrice={course.coursePrice}
+                rating={course.rating}
               />
             ))}
           </div>

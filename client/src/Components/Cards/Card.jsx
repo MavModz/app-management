@@ -1,7 +1,8 @@
 import React from 'react';
 import Thumb from '../../assets/images/course-img.png';
+import Rating from '../../assets/images/Star.svg';
 import './card.css';
-function Card({ courseName, courseCode, teacherName, coursePrice }) {
+function Card({ courseName, courseCode, teacherName, coursePrice, rating }) {
     return (
         <>
             <div className="card-container">
@@ -13,6 +14,11 @@ function Card({ courseName, courseCode, teacherName, coursePrice }) {
                         <div className="card-course-title flex justify-between">
                             <h4>{courseName}</h4>
                             <p>{courseCode}</p>
+                        </div>
+                        <hr />
+                        <div className="course-card-info">
+                            <img src={Rating} alt="course rating" />
+                            <span>{rating}</span>
                         </div>
                         <hr />
                         <div className="card-course-detail flex justify-between items-end">
