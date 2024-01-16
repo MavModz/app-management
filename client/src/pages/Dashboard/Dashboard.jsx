@@ -7,7 +7,7 @@ import './dashboard.css';
 
 function Dashboard() {
   return (
-    <div className='bg-[#f4f7fe]'>
+    <div className='bg-[#f4f7fe] w-full min-h-full'>
       <Header />
       <div className="dashboard-conatiner h-screen">
         <div className="dashboard-wrapper">

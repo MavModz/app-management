@@ -20,7 +20,7 @@ function Billing() {
   };
 
   return (
-    <div className='bg-[#f4f7fe]'>
+    <div className='bg-[#f4f7fe] w-full min-h-full'>
       <Header />
       <div className="course-card-container">
         <h4>My Courses</h4>
